@@ -16,7 +16,7 @@ type Circle struct {
 }
 
 type Triangle struct {
-	Base float64
+	Base   float64
 	Height float64
 }
 
@@ -28,6 +28,6 @@ func (circle Circle) Area() float64 {
 	return math.Pow(circle.Radius, 2) * math.Pi
 }
 
-func (tri Triangle) Area() float64{
+func (tri Triangle) Area() float64 {
 	return tri.Base * tri.Height * 0.5
 }
