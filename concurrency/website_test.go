@@ -7,19 +7,19 @@ import (
 	"time"
 )
 
-func mockWebsiteChecker(url string) bool{
-	if(url == "https://skillissue.com"){
+func mockWebsiteChecker(url string) bool {
+	if url == "https://skillissue.com" {
 		return false
 	}
 	return true
 }
 
-func slowWebsiteCheker(url string) bool{
+func slowWebsiteCheker(url string) bool {
 	time.Sleep(20 * time.Millisecond)
 	return true
 }
 
-func TestCheckWebsite(t *testing.T){
+func TestCheckWebsite(t *testing.T) {
 	websites := []string{
 		"https://google.com",
 		"https://yahoo.com",
@@ -28,24 +28,24 @@ func TestCheckWebsite(t *testing.T){
 
 	got := CheckWebsites(mockWebsiteChecker, websites)
 	want := map[string]bool{
-		"https://google.com" : true,
-		"https://yahoo.com": true,
-		"https://skillissue.com": false, 
+		"https://google.com":     true,
+		"https://yahoo.com":      true,
+		"https://skillissue.com": false,
 	}
 
-	if !reflect.DeepEqual(got, want){
+	if !reflect.DeepEqual(got, want) {
 		t.Errorf("wanted %v, got %v", want, got)
 	}
 }
 
-func BenchmarkCheckWebsite(b *testing.B){
+func BenchmarkCheckWebsite(b *testing.B) {
 	urls := make([]string, 100)
-	for i:=0; i<len(urls); i++{
+	for i := 0; i < len(urls); i++ {
 		urls[i] = fmt.Sprintf("some url %d", i)
 	}
 
 	b.ResetTimer()
-	for i:=0; i<b.N; i++{
+	for i := 0; i < b.N; i++ {
 		CheckWebsites(slowWebsiteCheker, urls)
 	}
 }

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestCounter(t *testing.T){
+func TestCounter(t *testing.T) {
 	t.Run("running 3 times", func(t *testing.T) {
 		counter := Counter{}
 		counter.Inc()
@@ -22,8 +22,8 @@ func TestCounter(t *testing.T){
 		var wg sync.WaitGroup
 		wg.Add(wantedCount)
 
-		for i:=0; i<wantedCount; i++{
-			go func(){
+		for i := 0; i < wantedCount; i++ {
+			go func() {
 				counter.Inc()
 				wg.Done()
 			}()

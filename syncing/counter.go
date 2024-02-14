@@ -9,7 +9,7 @@ type Counter struct {
 
 func (c *Counter) Inc() {
 	c.mu.Lock()
-    defer c.mu.Unlock()
+	defer c.mu.Unlock()
 	c.value += 1
 }
 
